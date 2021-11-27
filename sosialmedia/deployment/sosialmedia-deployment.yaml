@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sosialmedia
-        image: yusufluai/apache:v2 
+        image: yusufluai/sosialmedia
         ports:
           - name: sosialmedia
             containerPort: 80
