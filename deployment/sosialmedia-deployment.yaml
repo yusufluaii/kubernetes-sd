@@ -43,9 +43,9 @@ spec:
                 key:  mysql_db
           - name:  DB_HOST
             valueFrom:
-              configMapKeyRef:
-                name: sosialmedia-configmap
-                key: database_url
+              secretKeyRef:
+                name: sosialmedia-mysql-secret
+                key: DB_HOST
 
 ---
 kind: Service

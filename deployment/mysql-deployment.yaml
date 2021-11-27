@@ -34,9 +34,9 @@ spec:
       containers:
       - image: mysql:5.6
         name: mysql
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "12345678"
+        envFrom:
+          - secretRef:
+              name: sosialmedia-mysql-secret
         ports:
         - containerPort: 3306
           name: mysql
@@ -46,4 +46,4 @@ spec:
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: pvc-claim
+          claimName: mysql-pvc-claim
