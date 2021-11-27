@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  landingpage-service
+spec:
+  selector:
+    app:  landingpage
+  type:  LoadBalancer
+  ports:
+   - port:  80
+     targetPort:  80
