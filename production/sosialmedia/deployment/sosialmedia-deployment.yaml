@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sosialmedia-deployment
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: sosialmedia
+      tier: frontend
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: sosialmedia
+        tier: frontend
+    spec:
+      containers:
+      - name: sosialmedia
+        image: yusufluai/sosialmedia
+        ports:
+          - name: sosialmedia
+            containerPort: 80
+        envFrom:
+        - secretRef:
+            name: sosialmedia-rds-secret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sosialmedia-service
+spec:
+  selector:
+    app: sosialmedia
+    tier: frontend
+  type: LoadBalancer
+  ports:
+  - name: sosialmedia
+    port:  80
+    targetPort: 80
+    protocol: TCP
